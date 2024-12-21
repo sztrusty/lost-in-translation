@@ -37,7 +37,11 @@ class LostInTranslation
         $str = $file->getContents();
 
         if ($this->isBladeFile($file)) {
-            $str = $this->compiler->compileString($str);
+            try{
+                $str = $this->compiler->compileString($str);
+            } catch(\Throwable $t){
+                
+            }
 
             return $finder->find($str);
         }
